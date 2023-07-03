@@ -11,11 +11,16 @@ formEl.addEventListener('submit', onFormSubmit);
 formEl.addEventListener('input', throttle(onFormInput, 500));
 
 writeValueKey();
-
 function onFormSubmit(e) {
   e.preventDefault();
-  console.log(formData);
 
+  if (
+    e.target.elements.email.value === '' ||
+    e.target.elements.message.value === ''
+  ) {
+    return alert('Заповніть всі поля!');
+  }
+  console.log(formData);
   e.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
